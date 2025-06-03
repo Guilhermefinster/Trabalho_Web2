@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Box, Typography, Paper, Stack } from "@mui/material";
 
-function Users() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("users")) || [];
-    setUsers(data);
-  }, []);
-
+const Users = ({ users }) => {
   return (
-    <div>
-      <h2>Usuários Cadastrados</h2>
-      <ul>
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h5" gutterBottom>Usuários Cadastrados</Typography>
+      <Stack spacing={2}>
         {users.map((user, index) => (
-          <li key={index}>
-            <strong>Nome:</strong> {user.nome} <br />
-            <strong>Email:</strong> {user.email} <br />
-            <strong>Telefone:</strong> {user.telefone} <br />
-            <strong>Data de Nascimento:</strong> {user.dataNascimento} <br />
-            <strong>CPF:</strong> {user.cpf}
-            <hr />
-          </li>
+          <Paper key={index} sx={{ p: 2 }}>
+            <Typography><strong>Nome:</strong> {user.name}</Typography>
+            <Typography><strong>Email:</strong> {user.email}</Typography>
+            <Typography><strong>Data de Nascimento:</strong> {user.birth}</Typography>
+            <Typography><strong>Telefone:</strong> {user.phone}</Typography>
+            <Typography><strong>CPF:</strong> {user.cpf}</Typography>
+          </Paper>
         ))}
-      </ul>
-    </div>
+      </Stack>
+    </Box>
   );
-}
+};
 
 export default Users;
